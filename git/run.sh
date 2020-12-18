@@ -1,7 +1,8 @@
 #!/usr/bin/bash
+#    --cpuset-cpus 0 \
 
 sudo docker run \
-    --cpuset-cpus 0 \
+    --cpus 6 \
     --device /dev/snd \
     --device /dev/dri \
     -it \

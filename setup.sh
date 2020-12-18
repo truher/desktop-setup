@@ -8,6 +8,9 @@ echo =====
 sudo apt-get --no-install-recommends --quiet --assume-yes update
 sudo apt-get --no-install-recommends --quiet --assume-yes upgrade
 
+# this is the current (dec 2020) recommended
+sudo apt-get --no-install-recommends --quiet --assume-yes install nvidia-driver-455
+
 echo =====
 echo ===== from https://docs.docker.com/engine/install/ubuntu/
 echo =====
@@ -34,6 +37,9 @@ echo =====
 sudo apt-get update
 sudo apt-get --no-install-recommends --quiet --assume-yes install docker-ce docker-ce-cli containerd.io
 
+# i think this is just for CUDA?
+# sudo apt-get install nvidia-container-runtime
+
 echo =====
 echo ===== run hello world ...
 echo =====
@@ -48,7 +54,7 @@ echo ===== start on boot
 sudo systemctl enable docker
 
 echo =====
-echo ===== make a key if there isnt one (add it to github)
+echo ===== make a key if there isnt one. add it to github
 echo =====
 
 test -f $HOME/.ssh/id_ed25519 || ssh-keygen -q -t ed25519 -f $HOME/.ssh/id_ed25519 -C "joel@truher.org"

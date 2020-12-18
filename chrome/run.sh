@@ -1,17 +1,27 @@
 #!/usr/bin/bash
+# is this causing my chrome crashes?
+# --security-opt seccomp=$PWD/chrome.json \
+# --security-opt seccomp:unconfined \
+# --cpuset-cpus 0-5 \
+# --memory 512mb \
+# TODO: make GPU work. maybe this is just for CUDA. dont need that for chrome
+# --gpus all \
 
 xhost local:root
 sudo docker run \
-    --cpuset-cpus 0 \
+    --cpus 6 \
     --device /dev/snd \
     --device /dev/dri \
     -e DISPLAY=$DISPLAY \
     -it \
-    --memory 512mb \
+    --memory 32gb \
+    --memory-swap 32gb \
     --net host \
     --rm \
-    --security-opt seccomp=$PWD/chrome.json \
+    --oom-kill-disable \
+    --security-opt seccomp:unconfined \
     -v /dev/shm:/dev/shm \
     -v $HOME/Documents:/home/chrome/Documents \
+    -v $PWD/chrome.sh:/home/chrome/chrome.sh:ro \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     joel/chrome

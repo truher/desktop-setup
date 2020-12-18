@@ -5,7 +5,6 @@
 # --cpuset-cpus 0-5 \
 # --memory 512mb \
 # TODO: make GPU work. maybe this is just for CUDA. dont need that for chrome
-# --gpus all \
 
 xhost local:root
 sudo docker run \
@@ -13,6 +12,7 @@ sudo docker run \
     --device /dev/snd \
     --device /dev/dri \
     -e DISPLAY=$DISPLAY \
+    --gpus all \
     -it \
     --memory 32gb \
     --memory-swap 32gb \

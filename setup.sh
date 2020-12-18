@@ -53,6 +53,29 @@ echo ===== start on boot
 
 sudo systemctl enable docker
 
+sudo =====
+sudo ===== nvidia docker
+sudo =====
+
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/ubuntu20.04/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+sudo apt-get --no-install-recommends --quiet --assume-yes install nvidia-docker2
+
+sudo systemctl restart docker
+
+sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+
+echo =====
+echo ===== for chrome
+echo =====
+echo ===== permissions
+echo =====
+
+chmod a+rwx $HOME/Documents
+
+echo =====
+echo ===== for git
 echo =====
 echo ===== make a key if there isnt one. add it to github
 echo =====

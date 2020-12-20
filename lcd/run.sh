@@ -9,6 +9,7 @@
 #    -v $PWD/gitconfig:/etc/gitconfig:ro \
 
 sudo docker run \
+    --device /dev/ttyACM0 \
     -it \
     --rm \
     --net host \

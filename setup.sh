@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+
 echo =====
 echo ===== setup ...
 echo =====
@@ -53,16 +54,24 @@ echo ===== start on boot
 
 sudo systemctl enable docker
 
-sudo =====
-sudo ===== nvidia docker
-sudo =====
+echo =====
+echo ===== nvidia docker
+echo =====
 
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
    && curl -s -L https://nvidia.github.io/nvidia-docker/ubuntu20.04/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
 sudo apt-get update
 sudo apt-get --no-install-recommends --quiet --assume-yes install nvidia-docker2
 
+echo =====
+echo ===== restart docker
+echo =====
+
 sudo systemctl restart docker
+
+echo =====
+echo ===== try docker run nvidia-smi
+echo =====
 
 sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
 
@@ -75,7 +84,29 @@ echo =====
 chmod a+rwx $HOME/Documents
 
 echo =====
+echo ===== chrome itself from the Dockerfile I give up
+echo =====
+
+#sudo apt-get update
+#sudo apt-get install -y --no-install-recommends \
+        #gnupg2
+curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
+        && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends google-chrome-stable
+
+echo =====
 echo ===== for git
+echo =====
+echo ===== git itself I give up
+echo =====
+
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends \
+    git \
+    openssh-client \
+    vim
+
 echo =====
 echo ===== make a key if there isnt one. add it to github
 echo =====

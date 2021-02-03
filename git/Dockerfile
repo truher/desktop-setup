@@ -5,6 +5,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
     git \
     openssh-client \
     vim \
+    ca-certificates \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 

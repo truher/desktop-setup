@@ -91,7 +91,7 @@ echo =====
 #sudo apt-get install -y --no-install-recommends \
         #gnupg2
 curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-        && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+        && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends google-chrome-stable
 
@@ -116,3 +116,6 @@ test -f $HOME/.ssh/id_ed25519 || ssh-keygen -q -t ed25519 -f $HOME/.ssh/id_ed255
 echo =====
 echo ===== ... done!
 echo =====
+
+sudo apt install gnome-shell-extension-autohidetopbar
+

@@ -90,7 +90,7 @@ echo =====
 #sudo apt-get update
 #sudo apt-get install -y --no-install-recommends \
         #gnupg2
-curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
+curl -sSL https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
         && echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends google-chrome-stable
@@ -106,6 +106,11 @@ sudo apt-get install -y --no-install-recommends \
     git \
     openssh-client \
     vim
+
+git config --global core.editor "vim"
+git config --global user.name "Joel Truher"
+git config --global user.email joel@truher.org
+
 
 echo =====
 echo ===== make a key if there isnt one. add it to github

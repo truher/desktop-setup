@@ -119,8 +119,91 @@ echo =====
 test -f $HOME/.ssh/id_ed25519 || ssh-keygen -q -t ed25519 -f $HOME/.ssh/id_ed25519 -C "joel@truher.org"
 
 echo =====
-echo ===== ... done!
+echo ===== gnome stuff
 echo =====
 
 sudo apt install gnome-shell-extension-autohidetopbar
 
+echo =====
+echo ===== signal
+echo =====
+
+# NOTE: These instructions only work for 64 bit Debian-based
+# Linux distributions such as Ubuntu, Mint etc.
+
+# 1. Install our official public software signing key
+wget -O- https://updates.signal.org/desktop/apt/keys.asc |\
+  sudo apt-key add -
+
+# 2. Add our repository to your list of repositories
+echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" |\
+  sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+
+# 3. Update your package database and install signal
+sudo apt update && sudo apt install signal-desktop
+
+echo =====
+echo ===== slack
+echo =====
+
+sudo snap install slack --classic
+
+echo =====
+echo ===== ... done!
+echo =====
+
+# also
+# sudo apt install ./zoom_amd64.deb
+
+sudo apt install bluez bluez-tools
+
+sudo apt install ffmpeg vlc
+
+# gah, python graphics
+
+sudo apt install python3-pip
+
+python3 -m pip install matplotlib
+python3 -m pip install scipy
+python3 -m pip install pandas
+python3 -m pip install lmfit
+python3 -m pip install tensorflow
+python3 -m pip install scikit-learn
+python3 -m pip install seaborn
+python3 -m pip install pydot
+python3 -m pip install label-studio
+python3 -m pip install tensorflow_addons
+python3 -m pip install jupyterlab
+
+sudo apt install audacity
+sudo apt install musescore3
+sudo apt install ghex
+sudo apt install graphviz
+sudo apt install tree
+sudo apt install ant
+
+
+#wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+#sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+#sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
+#sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+#sudo apt-get update
+#sudo apt-get -y install cuda
+# i fucking hate nvidia
+# https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
+# somehow my libc6  is 9.3, but 9.2 is what cuda wants.
+# so fucking downgrade it
+# sudo apt install libc6=2.31-0ubuntu9.2
+# sudo apt update
+# sudo apt upgrade
+# sudo apt install build-essential
+# sudo apt install cuda
+# ok that worked
+# but libcudnn still not there?
+# https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html
+# my fucking god, nvidia requires login to get it
+# sudo dpkg -i libcudnn8_8.2.0.53-1+cuda11.3_amd64.deb 
+# sudo dpkg -i libcudnn8-dev_8.2.0.53-1+cuda11.3_amd64.deb 
+# sudo apt-get install g++ freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev
+# sudo apt-get install libfreeimage3 libfreeimage-dev
+# and now TF can see it.
